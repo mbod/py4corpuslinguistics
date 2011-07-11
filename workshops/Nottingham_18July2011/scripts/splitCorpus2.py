@@ -15,7 +15,7 @@ for file in os.listdir(dir):
 
 	article = text[text.find(startOfSection):text.find(endOfSection)]
 
-	articledir = r'../output/split/articles/'
+	articledir = r'../output/simpleGTech_split/articles/'
 	articlefile = file[:file.rfind('.')] + '_article.txt'
 
 	f = open(articledir + articlefile, 'w')
@@ -28,7 +28,7 @@ for file in os.listdir(dir):
 
 	comments = text[text.find(startOfSection):]
 
-	commentsdir = r'../output/split/comments/'
+	commentsdir = r'../output/simpleGTech_split/comments/'
 	commentsfile = file[:file.rfind('.')] + '_comments.txt'
 
 	f = open(commentsdir + commentsfile, 'w')
