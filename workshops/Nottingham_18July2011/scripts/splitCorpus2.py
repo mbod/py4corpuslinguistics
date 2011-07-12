@@ -1,36 +1,57 @@
 import os
 
-dir = r'../data/simpleGTech/'
+#1. specify location of the directory that has all the files in it
+dir_path = '../data/simpleGTech/'
 
-for file in os.listdir(dir):
+#2. loop through all the files in the directory
+for file_name in os.listdir(dir_path):
 
-	#open the file for reading, read the file, tidy up after yourself and close the file
-	f = open(dir + file, 'r')
-	text = f.read()
-	f.close()
+    #3. provide a bit of feedback so we know where we are
+    print(file_name)
 
-	#get the article
-	startOfSection = '<div id="articleHeader">'
-	endOfSection = '<div class="eight-col discussion content-comment-list">'
+    #4. combine the file name with the directory path
+    file_path = os.path.normpath(dir_path + file_name)
+                                                                                    
 
-	article = text[text.find(startOfSection):text.find(endOfSection)]
+    #5. open the file for reading, read the file, close the file
+    f = open(file_path, 'r')
+    text = f.read()
+    f.close()
+    
+    #6. extract the article section
+    start_of_article = '<div id="articleHeader">'
+    end_of_article = '<div class="eight-col discussion content-comment-list">'
+    article = text[text.find(start_of_article):text.find(end_of_article)]
 
-	articledir = r'../output/simpleGTech_split/articles/'
-	articlefile = file[:file.rfind('.')] + '_article.txt'
+    #7. specify the location and name for writing article out to file
+    article_dir = '../output/articles/'
+    article_file = file_name[:file_name.rfind('.')] + '_article.txt'
 
-	f = open(articledir + articlefile, 'w')
-	f.write(article)
-	f.close()
-	 
+    file_path = os.path.normpath(article_dir + article_file)
 
-	#get the comments
-	startOfSection = '<div class="eight-col discussion content-comment-list">'
+    #8. write the article section out to a file
+    f = open(file_path, 'w')
+    f.write(article)
+    f.flush()
+    f.close()
+                                                                                     
 
-	comments = text[text.find(startOfSection):]
+    #9. extract the comments section
+    start_of_comments = '<div class="eight-col discussion content-comment-list">'
+    comments = text[text.find(start_of_comments):]
 
-	commentsdir = r'../output/simpleGTech_split/comments/'
-	commentsfile = file[:file.rfind('.')] + '_comments.txt'
+    #10. specify the location and name for writing article out to file
+    comments_dir = '../output/comments/'
+    comments_file = file_name[:file_name.rfind('.')] + '_comments.txt'
 
-	f = open(commentsdir + commentsfile, 'w')
-	f.write(comments)
-	f.close()
+    file_path = os.path.normpath(comments_dir + comments_file)
+
+    #11. write the comments section out to a file
+    f = open(file_path, 'w')
+    f.write(comments)
+    f.flush()
+    f.close()
+
+
+
+
