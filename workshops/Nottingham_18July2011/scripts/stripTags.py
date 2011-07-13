@@ -1,4 +1,6 @@
-import re, os, sys
+import re
+import os
+import sys
 
 dir = "../output/simpleGTech_split/articles"
 outdir = "../output/simpleGTech_text/articles"
