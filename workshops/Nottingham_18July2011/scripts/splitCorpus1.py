@@ -18,7 +18,7 @@ article = text[text.find(start_of_article):text.find(end_of_article)]
 
 #4. specify the location and name for writing article out to file
 article_dir = '../output/simpleGTech_split/articles'
-article_file = file_name[:file_name.rfind('.')] + '_article.txt'
+article_file = file_name[:-4] + '_article.txt'
 
 file_path = os.path.join(article_dir, article_file)
 
@@ -32,7 +32,7 @@ comments = text[text.find(start_of_comments):]
 
 #7. specify the location and name for writing article out to file
 comments_dir = '../output/simpleGTech_split/comments/'
-comments_file = file_name[:file_name.rfind('.')] + '_comments.txt'
+comments_file = file_name[:-4] + '_comments.txt'
 
 file_path = os.path.join(comments_dir, comments_file)
 
