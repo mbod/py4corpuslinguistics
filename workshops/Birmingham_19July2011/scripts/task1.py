@@ -1,3 +1,11 @@
+'''
+Python for Corpus Linguistics Workshop
+University of Birmingham 19 July 2011
+
+Task 1 - Word frequency list for a single file
+
+'''
+
 import re
 
 
@@ -28,15 +36,6 @@ freq_of_all = tokens.count('all')
 freq_of_that = tokens.count('that')
 freq_of_internet = tokens.count('internet')
 
-idx=-1
-for i in range(0,freq_of_the):
-	idx = tokens.index('the',idx+1)
-	#print(' '.join(forms[idx-4:idx]), '\t',forms[idx], '\t', ' '.join(forms[idx+1:idx+5]))
-
-idx=-1
-for i in range(0,freq_of_internet):
-	idx = tokens.index('internet',idx+1)
-	#print(' '.join(forms[idx-4:idx]), '\t',forms[idx], '\t', ' '.join(forms[idx+1:idx+5]))
 
 
 # 6. create a frequency distribution (all types and their token counts)
@@ -62,17 +61,4 @@ for item in frequency_dist:
     outfile.write("%s\t%i\n" % (item[0],item[1]))
 outfile.close()
 
-# 9. create a simple index recording word positions
-index = {}
-for type in types:
-    index[type] = [pos for pos, word in enumerate(tokens) if word==type]
 
-# 10. search for a word and produce a simple KWIC display
-
-search_term = "internet"
-span = 4
-
-for node in index[search_term]:
-    left = ' '.join(forms[max(node-4,0):node])
-    right = ' '.join(forms[node+1 : min(node+4,len(forms))])
-    print("%s\t%s\t%s" % (left,forms[node],right))
