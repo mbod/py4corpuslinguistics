@@ -16,7 +16,7 @@ comment_list = re.split('<ul class="comment b2" .+?>', text)
 #4 specify the files directory and basic file name for output
 
 comments_dir = '../output/simpleGTech_split/separated_comments'
-base_file_name = file_name[:file_name.rfind('.')]
+base_file_name = file_name[:-4]
 
 #5. loop through the list of comments with a counter
 for i, comment in enumerate(comment_list[1:]):
