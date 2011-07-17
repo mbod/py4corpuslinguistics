@@ -1,10 +1,18 @@
+'''
+Python for Corpus Linguistics Workshop
+University of Nottingham 18 July 2011
+
+Task 3 - Split the reader comments into separate files (one per comment)
+
+'''
+
 import os
 import re
 
 
 #First write a function to output the list of comments to a file
 
-#1. specify name and the arguments required
+#1. specify name and the arguements required
 def output_comments(comment_list, file_name):
 
     #2. specify the files directory and basic file name for output

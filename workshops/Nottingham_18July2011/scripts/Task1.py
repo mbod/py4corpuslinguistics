@@ -1,3 +1,12 @@
+'''
+Python for Corpus Linguistics Workshop
+University of Nottingham 18 July 2011
+
+Task 1 - Split an Guardian online newspaper page into the article text and
+the reader comments
+
+'''
+
 import os
 
 #1. specify locations of directory and files for input
