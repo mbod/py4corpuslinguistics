@@ -24,17 +24,17 @@ for file in in_files:
 
 	text = open(os.path.join(in_directory,file)).read()
 
-	# 2.split the value into a list of tokens using whitespace as delimitation
+	# 5.split the value into a list of tokens using whitespace as delimitation
 
 	forms = text.split()
 
-	# 3. apply normalization to tokens in list to:
+	# 6. apply normalization to tokens in list to:
 	#    a. transform to lower case 
 	#    b. remove trailing punctuation
 
-	tokens = [re.sub('^\W+|\W$','',item.lower()) for item in forms if re.match('\w',item)]
+	tokens = [re.sub('^\W+|\W+$','',item.lower()) for item in forms if re.match('\w',item)]
 
-	# x. count the total number of types and tokens and calculate type-token ratio
+	# 7. count the total number of types and tokens and calculate type-token ratio
 
 	for token in tokens: 
 
@@ -44,12 +44,12 @@ for file in in_files:
 			frequency_dist[token] = 1
 
 
-# 7. sort word list by frequency
+# 8. sort word list by frequency
 frequency_distribution = list(frequency_dist.items())
 frequency_distribution.sort(key=lambda x:x[1], reverse=True)
 
 
-# 8. write frequency list out to a file
+# 9. write frequency list out to a file
 for item in frequency_distribution[0:20]:
     print(item[0],"\t",item[1])
 

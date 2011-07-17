@@ -24,7 +24,7 @@ tokens_lower = [item.lower() for item in forms]
  
 #    b. remove trailing punctuation
 
-tokens = [re.sub('^\W+|\W$','', item) for item in tokens_lower]
+tokens = [re.sub('^\W+|\W+$','', item) for item in tokens_lower]
 
 # 4. get the types
 
