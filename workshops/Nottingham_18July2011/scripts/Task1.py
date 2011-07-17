@@ -2,7 +2,7 @@ import os
 
 #1. specify locations of directory and files for input
 dir_path = '../data/simpleGTech'
-file_name = 'wwf-pdf-file-format-printed_GTech42.txt'
+file_name = 'larry-page-google-ceo-eric-schmidt_GTech17.txt'
 
 file_path = os.path.join(dir_path, file_name)
 
