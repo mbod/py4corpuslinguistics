@@ -18,19 +18,24 @@ text = open('../data/simpleGTech_text/articles/young-people-tv-mobiles-net_GTech
 forms = text.split()
 
 # 3. apply normalization to tokens in list to:
-#    a. transform to lower case 
+#    a. transform to lower case
+
+tokens_lower = [item.lower() for item in forms]
+ 
 #    b. remove trailing punctuation
 
-tokens = [re.sub('^\W+|\W$','',item.lower()) for item in forms]
+tokens = [re.sub('^\W+|\W$','', item) for item in tokens_lower]
+
+# 4. get the types
 
 types = set(tokens)
 
-# 4. count the total number of types and tokens and calculate type-token ratio
+# 5. count the total number of types and tokens and calculate type-token ratio
 
 token_cnt = len(tokens)
 type_cnt = len(types)
 
-# 5. count frequency of selected words
+# 6. count frequency of selected words
 freq_of_the = tokens.count('the')
 freq_of_all = tokens.count('all')
 freq_of_that = tokens.count('that')
@@ -38,11 +43,11 @@ freq_of_internet = tokens.count('internet')
 
 
 
-# 6. create a frequency distribution (all types and their token counts)
+# 7. create a frequency distribution (all types and their token counts)
 frequency_dist = [(item,tokens.count(item)) for item in types]
 
 
-# 7. sort and display a frequency list
+# 8. sort and display a frequency list
 #    a. alphabetical
 frequency_dist.sort()
 
@@ -50,7 +55,7 @@ frequency_dist.sort()
 frequency_dist.sort(key=lambda x:x[1], reverse=True)
 
 
-# 8. write frequency list out to a file
+# 9. write frequency list out to a file
 for item in frequency_dist[0:20]:
     print(item[0],"\t",item[1])
 
