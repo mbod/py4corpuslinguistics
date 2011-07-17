@@ -4,7 +4,7 @@ import re
 
 #First write a function to output the list of comments to a file
 
-#1. specify name and the arguements required
+#1. specify name and the arguments required
 
     #2. specify the files directory and basic file name for output
 
