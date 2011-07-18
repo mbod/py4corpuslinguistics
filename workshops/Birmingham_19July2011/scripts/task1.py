@@ -8,7 +8,7 @@ Task 1 - Word frequency list for a single file
 
 import re
 
-freq_dist = {}
+distribution = {}
 
 
 # 1. load contents of a file into a string value named text
