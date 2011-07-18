@@ -2,60 +2,76 @@
 Python for Corpus Linguistics Workshop
 University of Birmingham 19 July 2011
 
-Task 2 - Word frequency list from a directory of files
+Task 2 - Word frequency list for all files in directory
 
 '''
 
-import os
 import re
+import os
+from corpus_utils import *
 
-# 1. create an empty dictionary named freq_dist
-frequency_dist={}
+distribution = {}
 
-# 2. set location of input file directory in a value named in_directory
-in_directory = '../data/simpleGTech_text/articles'
+article_dir = '../data/GTech_text/articles'
 
-# 3. create a list named in_files containing all text files in in_directory
-in_files = [file for file in os.listdir(in_directory) if file.endswith('.txt')]
-
-# 4. loop over each of the files in in_files
-for file in in_files:
-	print('Generating a word list for ', file)
-
-	text = open(os.path.join(in_directory,file)).read()
-
-	# 5.split the value into a list of tokens using whitespace as delimitation
-
-	forms = text.split()
-
-	# 6. apply normalization to tokens in list to:
-	#    a. transform to lower case 
-	#    b. remove trailing punctuation
-
-	tokens = [re.sub('^\W+|\W+$','',item.lower()) for item in forms if re.match('\w',item)]
-
-	# 7. count the total number of types and tokens and calculate type-token ratio
-
-	for token in tokens: 
-
-		try:
-			frequency_dist[token] += 1
-		except:
-			frequency_dist[token] = 1
+for file_name in os.listdir(article_dir):
 
 
-# 8. sort word list by frequency
-frequency_distribution = list(frequency_dist.items())
-frequency_distribution.sort(key=lambda x:x[1], reverse=True)
+        file_path= os.path.join(article_dir, file_name)
+
+        # 1. load contents of a file into a string value named text
+
+        text = open(file_path, mode='r', encoding='utf-8').read()
+
+        # 2.split the value into a list of tokens using whitespace as delimitation
+
+        forms = text.split()
+
+        # 3. apply normalization to tokens in list to:
+        #    a. transform to lower case
+
+        tokens_lower = [item.lower() for item in forms]
+         
+        #    b. remove trailing punctuation
+
+        tokens = [re.sub('^\W+|\W+$','', item) for item in tokens_lower]
+
+        # 4. get the types
+
+        types = set(tokens)
+
+        # 5. count the total number of types and tokens and calculate type-token ratio
+
+        token_cnt = len(tokens)
+        type_cnt = len(types)
+
+        TTR = (type_cnt / token_cnt) * 100
+
+        print(file_name, type_cnt, token_cnt, TTR)
 
 
-# 9. write frequency list out to a file
-for item in frequency_distribution[0:20]:
-    print(item[0],"\t",item[1])
+        # 7. create a frequency distribution (all types and their token counts)
+        for item in types:
+                item_freq = tokens.count(item)
 
-out_directory = "../output/wordlists"    
+                try:
+                        distribution[item] += item_freq
+                except:
+                        distribution[item] = item_freq
 
-outfile = open(os.path.join(out_directory, 'articles_wordlist_freq.txt'),'w')
-for item in frequency_distribution:
-    outfile.write("%s\t%i\n" % (item[0],item[1]))
-outfile.close()
+
+# 8. sort and display a frequency list
+#    a. alphabetical
+alpha_dist = sorted(distribution.items())
+
+#    b. frequency
+freq_dist = sorted(distribution.items(), key=lambda x: x[1])
+
+
+output_directory = '../output/wordlists'
+
+output_path = os.path.join(output_directory, 'articles_wordlist_alpha.txt')
+write_list_to_file(output_path, alpha_dist)
+
+output_path = os.path.join(output_directory, 'articles_wordlist_freq.txt')
+write_list_to_file(output_path, freq_dist)

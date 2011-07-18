@@ -12,32 +12,31 @@ from corpus_utils import *
 
 distribution = {}
 
-file_name = '../data/GTech_text/articles/GTech13.txt'
+
+# 1. set values for the location of the article directory
+article_dir = '../data/GTech_text/articles'
+file_name = 'GTech13.txt'
+
+file_path= os.path.join(article_dir, file_name)
 
 
-# 1. load contents of a file into a string value named text
+# 2. load contents of a file into a string value named text
+text = open(file_path, mode='r', encoding='utf-8').read()
 
-text = open(file_name, mode='r', encoding='utf-8').read()
-
-# 2.split the value into a list of tokens using whitespace as delimitation
-
+# 3.split the value into a list of tokens using whitespace as delimitation
 forms = text.split()
 
-# 3. apply normalization to tokens in list to:
+# 4. apply normalization to tokens in list to:
 #    a. transform to lower case
-
 tokens_lower = [item.lower() for item in forms]
  
 #    b. remove trailing punctuation
-
 tokens = [re.sub('^\W+|\W+$','', item) for item in tokens_lower]
 
-# 4. get the types
-
+# 5. get the types
 types = set(tokens)
 
-# 5. count the total number of types and tokens and calculate type-token ratio
-
+# 6. count the total number of types and tokens and calculate type-token ratio
 token_cnt = len(tokens)
 type_cnt = len(types)
 
@@ -63,10 +62,13 @@ alpha_dist = sorted(distribution.items())
 freq_dist = sorted(distribution.items(), key=lambda x: x[1])
 
 
+# 9. write out the frequency lists to the output directory
 output_directory = '../output/wordlists'
 
+#    a. output alphabetical wordlist
 output_path = os.path.join(output_directory, 'articles_wordlist_alpha.txt')
 write_list_to_file(output_path, alpha_dist)
 
+#    b. output alphabetical wordlist
 output_path = os.path.join(output_directory, 'articles_wordlist_freq.txt')
 write_list_to_file(output_path, freq_dist)
