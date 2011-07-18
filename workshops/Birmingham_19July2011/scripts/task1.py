@@ -13,8 +13,9 @@ from corpus_utils import *
 distribution = {}
 
 
-# 1. set values for the location of the article directory
+# 1. set values for the location of the article
 article_dir = '../data/GTech_text/articles'
+
 file_name = 'GTech13.txt'
 
 file_path= os.path.join(article_dir, file_name)
@@ -53,6 +54,10 @@ for item in types:
 		distribution[item] += item_freq
 	except:
 		distribution[item] = item_freq
+
+
+
+
 
 # 8. sort and display a frequency list
 #    a. alphabetical

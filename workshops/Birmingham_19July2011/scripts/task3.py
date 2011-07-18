@@ -69,11 +69,3 @@ for hit_number,hit in enumerate(search_hits):
 	# 13. print KWIC line
 	print("%i\t%s\t%s\t%s\t%s" % (hit_number,' '.join(left),node_form,' '.join(right), in_files[file]))
 
-'''
-out_directory = "../output/kwic"    
-
-outfile = open(os.path.join(out_directory, 'articles_wordlist_freq.txt'),'w')
-for item in frequency_distribution:
-    outfile.write("%s\t%i\n" % (item[0],item[1]))
-outfile.close()
-'''
