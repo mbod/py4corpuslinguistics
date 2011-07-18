@@ -7,13 +7,17 @@ Task 1 - Word frequency list for a single file
 '''
 
 import re
+import os
+from corpus_utils import *
 
 distribution = {}
+
+file_name = '../data/GTech_text/articles/GTech13.txt'
 
 
 # 1. load contents of a file into a string value named text
 
-text = open('../data/GTech_text/articles/GTech13.txt').read()
+text = open(file_name, mode='r', encoding='utf-8').read()
 
 # 2.split the value into a list of tokens using whitespace as delimitation
 
@@ -39,7 +43,7 @@ type_cnt = len(types)
 
 TTR = (type_cnt / token_cnt) * 100
 
-print("TTR", TTR)
+print(file_name, type_cnt, token_cnt, TTR)
 
 
 # 7. create a frequency distribution (all types and their token counts)
@@ -51,20 +55,18 @@ for item in types:
 	except:
 		distribution[item] = item_freq
 
-
-
-
-
-
-
 # 8. sort and display a frequency list
 #    a. alphabetical
 alpha_dist = sorted(distribution.items())
 
-
 #    b. frequency
-freq_dist = sorted(distribution.items, key=lambda x: x[1])
+freq_dist = sorted(distribution.items(), key=lambda x: x[1])
 
 
+output_directory = '../output/wordlists'
 
+output_path = os.path.join(output_directory, 'articles_wordlist_alpha.txt')
+write_list_to_file(output_path, alpha_dist)
 
+output_path = os.path.join(output_directory, 'articles_wordlist_freq.txt')
+write_list_to_file(output_path, freq_dist)
