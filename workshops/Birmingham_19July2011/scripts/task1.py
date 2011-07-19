@@ -64,7 +64,7 @@ for item in types:
 alpha_dist = sorted(distribution.items())
 
 #    b. frequency
-freq_dist = sorted(distribution.items(), key=lambda x: x[1])
+freq_dist = sorted(distribution.items(), key=lambda x: x[1], reverse=True)
 
 
 # 9. write out the frequency lists to the output directory
