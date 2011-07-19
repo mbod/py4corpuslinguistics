@@ -14,7 +14,7 @@ index={}
 text_list=[]
 
 # 2. set location of input file directory in a value named in_directory
-in_directory = '../data/simpleGTech_text/articles'
+in_directory = '../data/GTech_text/articles'
 
 # 3. create a list named in_files containing all text files in in_directory
 in_files = [file for file in os.listdir(in_directory) if file.endswith('.txt')]

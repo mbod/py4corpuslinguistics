@@ -37,12 +37,12 @@ for file_name in os.listdir(article_dir):
         types = set(tokens)
 
         # 6. count the total number of types and tokens and calculate type-token ratio
-        token_cnt = len(tokens)
-        type_cnt = len(types)
+        token_count = len(tokens)
+        type_count = len(types)
 
-        TTR = (type_cnt / token_cnt) * 100
+        TTR = (type_count / token_count) * 100
 
-        print(file_name, type_cnt, token_cnt, TTR)
+        print(file_name, type_count, token_count, TTR)
 
 
         # 7. create a frequency distribution (all types and their token counts)
